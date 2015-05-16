@@ -8,13 +8,28 @@ load("../libraries/jStat/test.js");
 
 
 
-function Power0(Theta, precision, I, J, nsims, U){
+function Power0(Theta, precision, I, J, nsims, U, Z){
 	if(typeof U == 'undefined'){
 		var U = new Array(I);
 		for (var i = 0; i < I; i++) {
 			U[i] = new Array(nsims);
 			for(var sim=0; sim<nsims; sim++){
-				U[i][sim] = Math.random();
+				U[i][sim] = new Array(J);
+				for(var j=0; j<J; j++){
+					U[i][sim][j] = Math.random();
+				}
+			}
+		}
+	}
+	if(typeof Z == 'undefined'){
+		var U = new Array(I);
+		for (var i = 0; i < I; i++) {
+			U[i] = new Array(nsims);
+			for(var sim=0; sim<nsims; sim++){
+				U[i][sim] = new Array(J);
+				for(var j=0; j<J; j++){
+					U[i][sim][j] = Math.random();
+				}
 			}
 		}
 	}
@@ -54,7 +69,10 @@ function Power(precision, I, J, nsims, npoints, U){
 		for (var i = 0; i < I; i++) {
 			U[i] = new Array(nsims);
 			for(var sim=0; sim<nsims; sim++){
-				U[i][sim] = Math.random();
+				U[i][sim] = new Array(J);
+				for(var j=0; j<J; j++){
+					U[i][sim][j] = Math.random();
+				}
 			}
 		}
 	} else {

@@ -14,24 +14,29 @@
     <script language="javascript" type="text/javascript" src="../libraries/jStat/test.js"></script>
      <script language="javascript" type="text/javascript" src="../libraries/underscore-min.js"></script>
 
-    <script language="javascript" type="text/javascript" src="hbinom.js"></script>
+    <script language="javascript" type="text/javascript" src="hbinom_beta.js"></script>
     
   <script type="text/javascript">
 
 var I_max = 100;
 var nsims=5000;
-var U = new Array(I_max);
-for (var i = 0; i < I_max; i++) {
-	U[i] = new Array(nsims);
-	for(var sim=0; sim<nsims; sim++){
-		U[i][sim] = Math.random();
-	}
-}
+		var U = new Array(I_max);
+		for (var i = 0; i < I_max; i++) {
+			U[i] = new Array(nsims);
+		}
 
    $(document).ready(function() {
 
 function myFunction(I,J) {
-	var xy = Power(100, I, J, nsims=nsims, npoints=25, U);
+		for (var i = 0; i < I; i++) {
+			for(var sim=0; sim<nsims; sim++){
+				U[i][sim] = new Array(J);
+				for(var j=0; j<J; j++){
+					U[i][sim][j] = Math.random();
+				}
+			}
+		}
+	var xy = Power(100, I, J, nsims=nsims, npoints=25);
     $.plot("#placeholder", 
 		[{
 			label: 'lower',
