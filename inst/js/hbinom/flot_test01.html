@@ -35,23 +35,28 @@ function myFunction(I,J) {
     $.plot("#placeholder", 
 		[{
 			label: 'lower',
-			data: xy[0]
+			data: xy[0],
+			shadowSize: 0 
 		}, {
 			label: 'upper',
-			data : xy[1]
+			data : xy[1],
+			shadowSize: 0 
 		}, {
 			label: 'twosided',
-			data : xy[2]
+			data : xy[2],
+			shadowSize: 0 
 		},{
 			label: '97.5%',
 			data: [[0,.975],[1,.975]],
 			dashes: { show: true },
-			points: { show: true }
+			points: { show: true },
+			shadowSize: 0 
 		},{
 			label: '95%', 
 			data: [[0,.95],[1,.95]],
 			dashes: { show: true },
-			points: { show: true }
+			points: { show: true },
+			shadowSize: 0 
 		}],
 		//{
 			//grid: {
