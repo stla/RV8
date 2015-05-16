@@ -17,12 +17,21 @@
     <script language="javascript" type="text/javascript" src="hbinom.js"></script>
     
   <script type="text/javascript">
+
+var I_max = 100;
+var nsims=5000;
+var U = new Array(I_max);
+for (var i = 0; i < I_max; i++) {
+	U[i] = new Array(nsims);
+	for(var sim=0; sim<nsims; sim++){
+		U[i][sim] = Math.random();
+	}
+}
+
    $(document).ready(function() {
 
-var nsims=5000;
-
 function myFunction(I,J) {
-	var xy = Power(100, I, J, nsims=nsims, npoints=25);
+	var xy = Power(100, I, J, nsims=nsims, npoints=25, U);
     $.plot("#placeholder", 
 		[{
 			label: 'lower',

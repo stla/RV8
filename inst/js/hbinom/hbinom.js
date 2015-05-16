@@ -45,17 +45,21 @@ function Power0(Theta, precision, I, J, nsims, U){
 	return [lower/nsims, upper/nsims, twosided/nsims];
 }
 
-function Power(precision, I, J, nsims, npoints){
+function Power(precision, I, J, nsims, npoints, U){
 	var lower=[];
 	var upper=[];
 	var twosided=[];
-	var U = new Array(I);
-	for (var i = 0; i < I; i++) {
-		U[i] = new Array(nsims);
-		for(var sim=0; sim<nsims; sim++){
-			U[i][sim] = Math.random();
+	if(typeof U == 'undefined'){
+		var U = new Array(I);
+		for (var i = 0; i < I; i++) {
+			U[i] = new Array(nsims);
+			for(var sim=0; sim<nsims; sim++){
+				U[i][sim] = Math.random();
+			}
 		}
-	}
+	} else {
+		U = U.slice(0,I);
+	}	
 	for(var i=1; i<npoints; i++){
 		var Theta=i/npoints;
 		var power=Power0(Theta, precision, I, J, nsims, U);
@@ -67,8 +71,19 @@ function Power(precision, I, J, nsims, npoints){
 }
 
 
-print(JSON.stringify(Power0(0.5, 100, 10, 12, nsims=5000)))
+////print(JSON.stringify(Power0(0.5, 100, 10, 12, nsims=5000)))
+//var I = 100;
+//var nsims=5000;
+//var U = new Array(I);
+//for (var i = 0; i < I; i++) {
+	//U[i] = new Array(nsims);
+	//for(var sim=0; sim<nsims; sim++){
+		//U[i][sim] = Math.random();
+	//}
+//}
+		
+//~ var pow=Power(100, 10, 12, nsims=500, npoints=3);
+//~ print(JSON.stringify(pow))
+//print(JSON.stringify(pow[0]))
 
-var pow=Power(100, 10, 12, nsims=500, npoints=3);
-print(JSON.stringify(pow))
-print(JSON.stringify(pow[0]))
+
