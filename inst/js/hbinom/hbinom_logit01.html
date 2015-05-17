@@ -32,10 +32,12 @@ for (var i = 0; i < I_max; i++) {
 		Z[i][sim] =  jGauss.sample(0,1);
 	}
 }
+</script>
 
-   $(document).ready(function() {
+  <script type="text/javascript">
+$(document).ready(function() {
 
-function myFunction(I,J) {
+function myFunction(I,J,precision) {
 		for (var i = 0; i < I; i++) {
 			for(var sim=0; sim<nsims; sim++){
 				U[i][sim] = new Array(J);
@@ -82,17 +84,20 @@ function myFunction(I,J) {
 		);    
 }
 
-$('#I, #J').click(function () {
+$('#I, #J, #sigma').click(function () {
     var I = $('#I').val();
     var J = $('#J').val();
+    var sigma = $('#sigma').val();
 	myFunction(I,J);
 });
 
 var I = 3;
 var J = 6;
+var sigma=1;
 $('#I').val(I)
 $('#J').val(J)
-myFunction(I,J);
+$('#sigma').val(sigma)
+myFunction(I,J,1/sigma^2);
 		
 
 		// Add the Flot version string to the footer
@@ -105,14 +110,20 @@ myFunction(I,J);
   <body>
   <div id="content">
 
-<form>
-  I (number of individuals): 
-  <input id="I", type="number" name="I" min="2" max="50">
-</form>
-<form>
-  J (number of trials per individual):
-    <input id="J", type="number" name="J" min="2" max="50">
-</form>
+
+
+		<form>
+		  I (number of individuals): 
+		  <input id="I", type="number" name="I" min="2" max="50">
+		  J (number of trials per individual):
+		    <input id="J", type="number" name="J" min="2" max="50">
+		</form>
+
+		<form>
+		  &sigma; (standard deviation around <em>logit(&Theta;)</em>)
+		    <input id="sigma", type="number" name="sigma" min="0" max="50">
+		</form>
+
 
 		<div class="demo-container">
 			<div id="placeholder" class="demo-placeholder"></div>

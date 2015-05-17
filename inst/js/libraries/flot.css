@@ -71,7 +71,6 @@ input[type=checkbox] {
 	height: 450px;
 	padding: 20px 15px 15px 15px;
 	margin: 15px auto 30px auto;
-/*
 	border: 1px solid #ddd;
 	background: #fff;
 	background: linear-gradient(#f6f6f6 0, #fff 50px);
@@ -84,9 +83,7 @@ input[type=checkbox] {
 	-ms-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 	-moz-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
 	-webkit-box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-*/
 }
-
 
 .demo-placeholder {
 	width: 100%;
@@ -97,4 +94,21 @@ input[type=checkbox] {
 
 .legend table {
 	border-spacing: 5px;
+}
+
+.rotate {
+             filter:  progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083);  /* IE6,IE7 */
+         -ms-filter: "progid:DXImageTransform.Microsoft.BasicImage(rotation=0.083)"; /* IE8 */
+     -moz-transform: rotate(-90.0deg);  /* FF3.5+ */
+      -ms-transform: rotate(-90.0deg);  /* IE9+ */
+       -o-transform: rotate(-90.0deg);  /* Opera 10.5 */
+  -webkit-transform: rotate(-90.0deg);  /* Safari 3.1+, Chrome */
+          transform: rotate(-90.0deg);  /* Standard */
+    transform-origin: middle top;
+}
+
+td {
+border-collapse:collapse;
+    text-align: center;
+    vertical-align: center;
 }
