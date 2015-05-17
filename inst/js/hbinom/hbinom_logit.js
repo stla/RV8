@@ -38,11 +38,9 @@ function Power0(Theta, precision, I, J, nsims, U, Z){
 	var twosided = 0;
 	for(var sim=0; sim<nsims; sim++){
 		var theta = Array(I);
-		for(var i=0; i<I; i++){
-			theta[i] = Theta;// expit(logit(Theta) + sigma*Z[i][sim]);
-		}
 		var y = Array(I); 
 		for(var i=0; i<I; i++){
+			theta[i] = expit(logit(Theta) + sigma*Z[i][sim]);
 			y[i] = 0;
 			for(var j=0; j<J; j++){
 				y[i] += (U[i][sim][j] < theta[i]);
