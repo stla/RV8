@@ -14,16 +14,24 @@
     <script language="javascript" type="text/javascript" src="../libraries/jStat/test.js"></script>
      <script language="javascript" type="text/javascript" src="../libraries/underscore-min.js"></script>
 
-    <script language="javascript" type="text/javascript" src="hbinom_beta.js"></script>
+    <script language="javascript" type="text/javascript" src="hbinom_logit.js"></script>
     
   <script type="text/javascript">
 
 var I_max = 100;
 var nsims=5000;
-		var U = new Array(I_max);
-		for (var i = 0; i < I_max; i++) {
-			U[i] = new Array(nsims);
-		}
+var U = new Array(I_max);
+for (var i = 0; i < I_max; i++) {
+	U[i] = new Array(nsims);
+}
+var jGauss = jStat.normal;
+var Z = new Array(I_max);
+for (var i = 0; i < I_max; i++) {
+	Z[i] = new Array(nsims);
+	for(var sim=0; sim<nsims; sim++){
+		Z[i][sim] =  jGauss.sample(0,1);
+	}
+}
 
    $(document).ready(function() {
 
@@ -36,7 +44,7 @@ function myFunction(I,J) {
 				}
 			}
 		}
-	var xy = Power(100, I, J, nsims=nsims, npoints=25);
+	var xy = Power(100, I, J, nsims=nsims, npoints=25, U, Z);
     $.plot("#placeholder", 
 		[{
 			label: 'lower',

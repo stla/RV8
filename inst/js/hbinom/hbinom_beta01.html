@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+
+  <html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <link href="../libraries/flot01.css" rel="stylesheet" type="text/css">
+    <script language="javascript" type="text/javascript" src="../libraries/jquery.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/jquery.flot.js"></script>
+        <script language="javascript" type="text/javascript" src="../libraries/jquery-flot-dashes.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/jStat/core.js"></script>
+   <script language="javascript" type="text/javascript" src="../libraries/jStat/special.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/jStat/distribution.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/jStat/vector.js"></script>
+    <script language="javascript" type="text/javascript" src="../libraries/jStat/test.js"></script>
+     <script language="javascript" type="text/javascript" src="../libraries/underscore-min.js"></script>
+
+    <script language="javascript" type="text/javascript" src="hbinom_beta.js"></script>
+    
+  <script type="text/javascript">
+
+var I_max = 100;
+var nsims=5000;
+		var U = new Array(I_max);
+		for (var i = 0; i < I_max; i++) {
+			U[i] = new Array(nsims);
+		}
+
+   $(document).ready(function() {
+
+function myFunction(I,J) {
+		for (var i = 0; i < I; i++) {
+			for(var sim=0; sim<nsims; sim++){
+				U[i][sim] = new Array(J);
+				for(var j=0; j<J; j++){
+					U[i][sim][j] = Math.random();
+				}
+			}
+		}
+	var xy = Power(100, I, J, nsims=nsims, npoints=25, U);
+    $.plot("#placeholder", 
+		[{
+			label: 'lower',
+			data: xy[0],
+			shadowSize: 0 
+		}, {
+			label: 'upper',
+			data : xy[1],
+			shadowSize: 0 
+		}, {
+			label: 'twosided',
+			data : xy[2],
+			shadowSize: 0 
+		},{
+			label: '97.5%',
+			data: [[0,.975],[1,.975]],
+			dashes: { show: true },
+			points: { show: true },
+			shadowSize: 0 
+		},{
+			label: '95%', 
+			data: [[0,.95],[1,.95]],
+			dashes: { show: true },
+			points: { show: true },
+			shadowSize: 0 
+		}],
+		//{
+			//grid: {
+			//markings: [
+				//{ color: '#000', lineWidth: 1, xaxis: { from: -2, to: 2 } },
+			//]
+			//}
+		//},
+		{ yaxis: {min: 0, max: 1 } }
+		);    
+}
+
+$('#I, #J').click(function () {
+    var I = $('#I').val();
+    var J = $('#J').val();
+	myFunction(I,J);
+});
+
+var I = 3;
+var J = 6;
+$('#I').val(I)
+$('#J').val(J)
+myFunction(I,J);
+		
+
+		// Add the Flot version string to the footer
+
+		$("#footer").prepend("Flot " + $.plot.version + " &ndash; ");
+	});
+
+</script>
+  </head>
+  <body>
+  <div id="content">
+
+<form>
+  I (number of individuals): 
+  <input id="I", type="number" name="I" min="2" max="50">
+</form>
+<form>
+  J (number of trials per individual):
+    <input id="J", type="number" name="J" min="2" max="50">
+</form>
+
+		<div class="demo-container">
+			<div id="placeholder" class="demo-placeholder"></div>
+		</div>
+
+		<p>You don't have to do much to get an attractive plot.  Create a placeholder, make sure it has dimensions (so Flot knows at what size to draw the plot), then call the plot function with your data.</p>
+
+		<p>The axes are automatically scaled.</p>
+
+	</div>
+  
+    <div id="footer">
+		Copyright &copy; 2007 - 2014 IOLA and Ole Laursen
+	</div>
+  </body>
+  </html>
