@@ -16,6 +16,8 @@
 
     <script language="javascript" type="text/javascript" src="hbinom_logit.js"></script>
     
+
+    
  <script type="text/javascript">
 	var I_max = 200;
 	var nsims = 6000;
@@ -83,14 +85,14 @@ $(document).ready(function() {
 			);    
 	}
 	
-	$('#I, #J, #sigma').click(function () {
+	$('#I, #J, #sigma').keyup(function () {
 	    var I = $('#I').val();
 	    var J = $('#J').val();
 	    var sigma = $('#sigma').val();
-		myFunction(I,J);
+		myFunction(I,J,1/sigma^2);
 	});
 	
-	var I = 100;
+	var I = 10;
 	var J = 15;
 	var sigma=1;
 	$('#I').val(I)
@@ -112,14 +114,14 @@ $(document).ready(function() {
 
 		<form>
 		  I (number of individuals): 
-		  <input id="I", type="number" name="I" min="2" max="50">
+		  <input id="I", type="number" name="I" min="2" max="200">
 		  J (number of trials per individual):
 		    <input id="J", type="number" name="J" min="2" max="50">
 		</form>
 
 		<form>
 		  &sigma; (standard deviation around <em>logit(&Theta;)</em>)
-		    <input id="sigma", type="number" name="sigma" min="0" max="50">
+		    <input id="sigma"  type="number" name="sigma" min="0" max="50">
 		</form>
 
 
